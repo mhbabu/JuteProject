@@ -1,62 +1,23 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-use Faker\Generator;
-use Ramsey\Uuid\Uuid;
-use App\Models\Auth\User;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
 | Model Factories
 |--------------------------------------------------------------------------
 |
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
+| This directory should contain each of the model factory definitions for
+| your application. Factories provide a convenient way to generate new
+| model instances for testing / seeding your application's database.
 |
 */
 
-$factory->define(User::class, function (Generator $faker) {
+$factory->define(App\User::class, function (Faker $faker) {
     return [
-        'uuid' => Uuid::uuid4()->toString(),
-        'first_name' => $faker->firstName,
-        'last_name' => $faker->lastName,
-        'email' => $faker->safeEmail,
-        'password' => 'secret',
-        'password_changed_at' => null,
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
-        'confirmation_code' => md5(uniqid(mt_rand(), true)),
-        'active' => true,
-        'confirmed' => true,
-    ];
-});
-
-$factory->state(User::class, 'active', function () {
-    return [
-        'active' => true,
-    ];
-});
-
-$factory->state(User::class, 'inactive', function () {
-    return [
-        'active' => false,
-    ];
-});
-
-$factory->state(User::class, 'confirmed', function () {
-    return [
-        'confirmed' => true,
-    ];
-});
-
-$factory->state(User::class, 'unconfirmed', function () {
-    return [
-        'confirmed' => false,
-    ];
-});
-
-$factory->state(User::class, 'softDeleted', function () {
-    return [
-        'deleted_at' => now(),
     ];
 });
