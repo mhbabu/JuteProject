@@ -6197,30 +6197,30 @@ core_defaults._set('global', {
 
 /**
  * @interface ILayoutItem
- * @prop {string} position - The position of the item in the chart layout. Possible values are
+ * @prop {string} position - The position of the item in the chart layouts. Possible values are
  * 'left', 'top', 'right', 'bottom', and 'chartArea'
  * @prop {number} weight - The weight used to sort the item. Higher weights are further away from the chart area
  * @prop {boolean} fullWidth - if true, and the item is horizontal, then push vertical boxes down
- * @prop {function} isHorizontal - returns true if the layout item is horizontal (ie. top or bottom)
+ * @prop {function} isHorizontal - returns true if the layouts item is horizontal (ie. top or bottom)
  * @prop {function} update - Takes two parameters: width and height. Returns size of item
  * @prop {function} getPadding -  Returns an object with padding on the edges
  * @prop {number} width - Width of item. Must be valid after update()
  * @prop {number} height - Height of item. Must be valid after update()
- * @prop {number} left - Left edge of the item. Set by layout system and cannot be used in update
- * @prop {number} top - Top edge of the item. Set by layout system and cannot be used in update
- * @prop {number} right - Right edge of the item. Set by layout system and cannot be used in update
- * @prop {number} bottom - Bottom edge of the item. Set by layout system and cannot be used in update
+ * @prop {number} left - Left edge of the item. Set by layouts system and cannot be used in update
+ * @prop {number} top - Top edge of the item. Set by layouts system and cannot be used in update
+ * @prop {number} right - Right edge of the item. Set by layouts system and cannot be used in update
+ * @prop {number} bottom - Bottom edge of the item. Set by layouts system and cannot be used in update
  */
 
-// The layout service is very self explanatory.  It's responsible for the layout within a chart.
-// Scales, Legends and Plugins all rely on the layout service and can easily register to be placed anywhere they need
-// It is this service's responsibility of carrying out that layout.
+// The layouts service is very self explanatory.  It's responsible for the layouts within a chart.
+// Scales, Legends and Plugins all rely on the layouts service and can easily register to be placed anywhere they need
+// It is this service's responsibility of carrying out that layouts.
 var core_layouts = {
 	defaults: {},
 
 	/**
 	 * Register a box to a chart.
-	 * A box is simply a reference to an object that requires layout. eg. Scales, Legend, Title.
+	 * A box is simply a reference to an object that requires layouts. eg. Scales, Legend, Title.
 	 * @param {Chart} chart - the chart to use
 	 * @param {ILayoutItem} item - the item to add to be layed out
 	 */
@@ -6240,7 +6240,7 @@ var core_layouts = {
 	/**
 	 * Remove a layoutItem from a chart
 	 * @param {Chart} chart - the chart to remove the box from
-	 * @param {ILayoutItem} layoutItem - the item to remove from the layout
+	 * @param {ILayoutItem} layoutItem - the item to remove from the layouts
 	 */
 	removeBox: function(chart, layoutItem) {
 		var index = chart.boxes ? chart.boxes.indexOf(layoutItem) : -1;
@@ -6334,7 +6334,7 @@ var core_layouts = {
 		// 1. Determine the minimum size of the chart area.
 		// 2. Split the remaining width equally between each vertical axis
 		// 3. Split the remaining height equally between each horizontal axis
-		// 4. Give each layout the maximum size it can be. The layout will return it's minimum size
+		// 4. Give each layouts the maximum size it can be. The layouts will return it's minimum size
 		// 5. Adjust the sizes of each axis based on it's minimum reported size.
 		// 6. Refit each axis
 		// 7. Position each axis in the final location
@@ -6437,10 +6437,10 @@ var core_layouts = {
 			}
 		}
 
-		// Let the left layout know the final margin
+		// Let the left layouts know the final margin
 		helpers$1.each(verticalBoxes, finalFitVerticalBox);
 
-		// Recalculate because the size of each layout might have changed slightly due to the margins (label rotation for instance)
+		// Recalculate because the size of each layouts might have changed slightly due to the margins (label rotation for instance)
 		outerBoxSizes = {top: topPadding, left: leftPadding, bottom: bottomPadding, right: rightPadding};
 		addSizeByPosition(outerBoxes, outerBoxSizes);
 
@@ -6453,7 +6453,7 @@ var core_layouts = {
 		outerBoxSizes.top += topPaddingAddition;
 		outerBoxSizes.bottom += Math.max(maxPadding.bottom - outerBoxSizes.bottom, 0);
 
-		// Figure out if our chart area changed. This would occur if the dataset layout label rotation
+		// Figure out if our chart area changed. This would occur if the dataset layouts label rotation
 		// changed due to the application of the margins in step 6. Since we can only get bigger, this is safe to do
 		// without calling `fit` again
 		var newMaxChartAreaHeight = height - outerBoxSizes.top - outerBoxSizes.bottom;
@@ -8764,7 +8764,7 @@ helpers$1.extend(Chart.prototype, /** @lends Chart */ {
 	},
 
 	/**
-	 * Updates the chart layout unless a plugin returns `false` to the `beforeLayout`
+	 * Updates the chart layouts unless a plugin returns `false` to the `beforeLayout`
 	 * hook, in which case, plugins will not be called on `afterLayout`.
 	 * @private
 	 */
