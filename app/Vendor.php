@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vendor extends Model
 {
-    protected $fillable = 'vendors';
-    protected $table = [
+    protected $table = 'vendors';
+    protected $fillable = [
         'id',
         'name',
         'address',
