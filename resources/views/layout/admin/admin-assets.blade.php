@@ -24,13 +24,13 @@
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-    @include('parts.admin.admin-sidebar')
+    @include('parts.admin.sidebar')
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
         <div id="content">
-            @include('parts.admin.admin-header')
+            @include('parts.admin.header')
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
@@ -40,7 +40,7 @@
 
         </div>
         <!-- End of Main Content -->
-        @include('parts.admin.admin-footer')
+        @include('parts.admin.footer')
 
     </div>
     <!-- End of Content Wrapper -->

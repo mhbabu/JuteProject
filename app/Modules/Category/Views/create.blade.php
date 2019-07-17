@@ -8,14 +8,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-6">
-                        <div class="form-group {{ $errors->has('category_name')?'has-error':'' }}">
-                            {!! Form::label('category_name','Category Name : ') !!}
-                            {!! Form::text('category_name','',['class'=>'form-control','placeholder'=>'Category Name']) !!}
-                            {!! $errors->first('category_name','<span class="help-block" style="color: red;">:message</span>') !!}
+                        <div class="form-group {{ $errors->has('name')?'has-error':'' }}">
+                            {!! Form::label('name','Category Name : ') !!}
+                            {!! Form::text('name','',['class'=>'form-control','placeholder'=>'Category name']) !!}
+                            {!! $errors->first('name','<span class="help-block" style="color: red;">:message</span>') !!}
                         </div>
                         <div class="form-group {{ $errors->has('status')?'has-error':'' }}">
                             {!! Form::label('status','Category Status : ') !!}
-                            {!! Form::select('status',[1=>'Active', 0=>'Inactive'],'',['class'=>'form-control','placeholder'=>'Select One']) !!}
+                            {!! Form::select('status',[1=>'Active', 0=>'Inactive'],'',['class'=>'form-control','placeholder'=>'Select one']) !!}
                             {!! $errors->first('status','<span class="help-block" style="color: red;">:message</span>') !!}
                         </div>
                     </div>

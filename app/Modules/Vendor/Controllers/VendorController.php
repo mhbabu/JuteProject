@@ -15,19 +15,19 @@ class VendorController extends Controller
 
     public function vendorList()
     {
-        return view("Vendor::vendorList");
+        return view("Vendor::list");
     }
 
     public function createVendor()
     {
-        return view("Vendor::createVendor");
+        return view("Vendor::create");
     }
 
 
     public function storeVendor(Request $request, $vendorId='')
     {
         $rules = [
-            'vendor_name' => 'required',
+            'name' => 'required',
             'status' => 'required',
             'address' => 'required',
             'email' => 'required',
@@ -45,7 +45,7 @@ class VendorController extends Controller
             ];
         }
         $this->validate($request,$rules);
-        $vendor->vendor_name = $request->get('vendor_name');
+        $vendor->name = $request->get('name');
         $vendor->status = $request->get('status');
         $vendor->address = $request->get('address');
         $vendor->email = $request->get('email');
@@ -62,10 +62,14 @@ class VendorController extends Controller
 
     public function getVendorList()
     {
-        $vendors = Vendor::orderBy('vendor_name','asc')->get(['id','vendor_name','address','email','phone','website','status']);
+        $vendors = Vendor::orderBy('name','asc')->get(['id','name','address','email','phone','website','status']);
         return Datatables::of($vendors)
             ->addColumn('serial', function(){
                 return '';
+            })
+            ->editColumn('name',function ($data){
+                $href = url($data->website);
+                return "<a target='_blank' href='$href'>$data->name</a>";
             })
             ->editColumn('status',function ($data){
                 if($data->status == 1){
@@ -79,7 +83,7 @@ class VendorController extends Controller
                 $str.='<a onclick="return confirm(\'Are you sure want to delete this vendor?\')" title="Vendor_Delete" href="/vendor/delete/' . Encryption::encodeId($data->id) . '"class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Delete</a> ';
                 return $str;
             })
-            ->rawColumns(['status','action'])
+            ->rawColumns(['name','status','action'])
             ->make (true);
     }
 
@@ -88,7 +92,7 @@ class VendorController extends Controller
     {
         $decodedVendorId = Encryption::decodeId($vendorId);
         $singleVendor = Vendor::find($decodedVendorId);
-        return view('Vendor::editVendor', compact('singleVendor'));
+        return view('Vendor::edit', compact('singleVendor'));
     }
 
 

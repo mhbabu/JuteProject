@@ -38,10 +38,8 @@
                 <h6 class="collapse-header">Products Components:</h6>
                 <a class="collapse-item" href="{{ url('category/list') }}">Category List</a>
                 <a class="collapse-item" href="{{ url('vendor/list') }}">Vendor List</a>
-                <a class="collapse-item" href="add-manufacturer">Add Manufacturer</a>
-                <a class="collapse-item" href="manage-manufacturer">Manage Manufacturer</a>
-                <a class="collapse-item" href="add-product">Add Product</a>
-                <a class="collapse-item" href="manage-product">Manage Product</a>
+                <a class="collapse-item" href="{{ url('sub-category/list') }}">SubCategory List</a>
+                <a class="collapse-item" href="{{ url('product/list') }}">Product List</a>
             </div>
         </div>
     </li>

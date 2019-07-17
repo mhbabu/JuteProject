@@ -6,8 +6,8 @@
     @include('parts.admin.message')
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h5 class="m-0 font-weight-bold text-primary float-left"><i class="fa fa-list"></i> Category List</h5>
-            <a class="btn btn-primary float-right" href="{{ url('category/create') }}"><i class="fa fa-plus"></i> Create category</a>
+            <h5 class="m-0 font-weight-bold text-primary float-left"><i class="fa fa-list"></i> Vendor List</h5>
+            <a class="btn btn-primary float-right" href="{{ url('vendor/create') }}"><i class="fa fa-plus"></i> Create vendor</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -15,11 +15,14 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table table-bordered dataTable" id="categoryList" width="100%" style="width: 100%;">
+                            <table class="table table-bordered dataTable" id="vendorList" width="100%" style="width: 100%;">
                                 <thead>
                                 <tr role="row">
                                     <th>#</th>
-                                    <th>Category Name</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -41,7 +44,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $(function(){
-                var t = $('#categoryList').DataTable({
+                var t = $('#vendorList').DataTable({
                     columnDefs:[{
                         serachable:false,
                         orderable:false,
@@ -52,7 +55,7 @@
                     serverSide:true,
                     iDisplayLength:15,
                     ajax:{
-                        url:'{{ url('/category/get-list') }}',
+                        url:'{{ url('/vendor/get-list') }}',
                         method:'POST',
                         headers:{
                             'X-CSRF-TOKEN':'{{ csrf_token() }}'
@@ -60,7 +63,10 @@
                     },
                     columns:[
                         {name:'serial',data:'serial'},
-                        {name:'category_name',data:'category_name'},
+                        {name:'name',data:'name'},
+                        {name:'email',data:'email'},
+                        {name:'phone',data:'phone'},
+                        {name:'address',data:'address'},
                         {name:'status',data:'status'},
                         {name:'action',data:'action'}
                     ],

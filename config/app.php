@@ -179,7 +179,6 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         ArtemSchander\L5Modular\ModuleServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-
     ],
 
     /*

@@ -14,19 +14,19 @@ class CategoryController extends Controller
 
     public function categoryList()
     {
-        return view("Category::categoryList");
+        return view("Category::list");
     }
 
     public function createCategory()
     {
-        return view("Category::createCategory");
+        return view("Category::create");
     }
 
 
     public function storeCategory(Request $request, $categoryId='')
     {
         $this->validate($request,[
-            'category_name' => 'required',
+            'name' => 'required',
             'status' => 'required'
         ]);
         if(!empty($categoryId)){
@@ -35,7 +35,7 @@ class CategoryController extends Controller
         }else{
             $category = new Category();
         }
-        $category->category_name = $request->get('category_name');
+        $category->name = $request->get('name');
         $category->status = $request->get('status');
         $category->save();
         $message = 'Category is successfully stored.';
@@ -48,7 +48,7 @@ class CategoryController extends Controller
 
     public function getCategoryList()
     {
-        $categories = Category::orderBy('category_name','asc')->get(['id','category_name','status']);
+        $categories = Category::orderBy('name','asc')->get(['id','name','status']);
         return Datatables::of($categories)
             ->addColumn('serial', function(){
                 return '';
@@ -74,7 +74,7 @@ class CategoryController extends Controller
     {
         $decodedCategoryId = Encryption::decodeId($categoryId);
         $singleCategory = Category::find($decodedCategoryId);
-        return view('Category::editCategory', compact('singleCategory'));
+        return view('Category::edit', compact('singleCategory'));
     }
 
 
